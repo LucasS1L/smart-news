@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  smartnews-api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: smartnews-api
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./smartnews.db}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - CHROMA_PERSIST_DIR=${CHROMA_PERSIST_DIR:-/data/chroma}
+      - EMBEDDING_MODEL_NAME=${EMBEDDING_MODEL_NAME:-sentence-transformers/all-MiniLM-L6-v2}
+      - SEARCH_CACHE_TTL=${SEARCH_CACHE_TTL:-300}
+    volumes:
+      - ./backend/app:/app/app
+      - chroma_data:/data/chroma
+      - sqlite_data:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  chroma_data:
+  sqlite_data:
