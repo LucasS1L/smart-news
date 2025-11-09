@@ -24,7 +24,7 @@ Body (JSON):
   "text": "Conteúdo da notícia",
   "author": "Autor opcional",
   "source": "Fonte opcional",
-  "date": "2024-10-01T12:00:00Z"
+  "date": "2024-10-01"
 }
 ```
 
@@ -36,7 +36,7 @@ Resposta (200):
   "text": "Conteúdo da notícia",
   "author": "Autor opcional",
   "source": "Fonte opcional",
-  "date": "2024-10-01T12:00:00Z",
+  "date": "2024-10-01",
   "created_at": "2024-10-01T12:00:05Z",
   "updated_at": null
 }
@@ -51,7 +51,7 @@ curl -X POST http://localhost:8000/news/ \
     "text": "Conteúdo de teste",
     "author": "Ana",
     "source": "Blog",
-    "date": "2024-10-01T12:00:00Z"
+    "date": "2024-10-01"
   }'
 ```
 
@@ -67,7 +67,7 @@ Body (JSON, todos os campos opcionais):
   "text": "Texto atualizado",
   "author": "Novo autor",
   "source": "Nova fonte",
-  "date": "2024-10-02T09:30:00Z"
+  "date": "2024-10-02"
 }
 ```
 
