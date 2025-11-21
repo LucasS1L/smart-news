@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -8,9 +9,18 @@ from .schemas import NewsCreate, NewsRead, NewsUpdate, SearchResponse, SearchIte
 from .embeddings import embed_text
 from .vectorstore import add_news, update_news, delete_news, query_similar
 from .cache import get_cached_search, set_cached_search, clear_search_cache
+from .config import CORS_ALLOW_ORIGINS
 
 
 app = FastAPI(title="SmartNews API (Python)")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=CORS_ALLOW_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.on_event("startup")
