@@ -7,7 +7,7 @@ REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", "/data/chroma")
 
 SEARCH_CACHE_TTL = int(os.getenv("SEARCH_CACHE_TTL", "300"))
-EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2")
+EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "sentence-transformers/all-mpnet-base-v2")
 
 def _parse_origins(raw: str) -> list[str]:
     parts = [p.strip() for p in raw.split(",")]

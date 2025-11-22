@@ -5,8 +5,7 @@ from chromadb.config import Settings
 from .config import CHROMA_PERSIST_DIR
 
 _client = None
-_collection = None
-
+_collection = None 
 
 def _get_client() -> Any:
     global _client
@@ -21,7 +20,7 @@ def _get_client() -> Any:
 def _get_collection():
     global _collection
     if _collection is None:
-        _collection = _get_client().get_or_create_collection(name="news")
+        _collection = _get_client().get_or_create_collection(name="news_mpnet")
     return _collection
 
 
