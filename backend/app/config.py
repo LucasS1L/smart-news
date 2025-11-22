@@ -1,6 +1,5 @@
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./smartnews.db")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 
 # Persistência local do Chroma (duckdb+parquet)

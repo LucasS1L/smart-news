@@ -30,8 +30,6 @@ class NewsRead(BaseModel):
     author: Optional[str] = None
     source: Optional[str] = None
     date: Optional[datetime] = None
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True

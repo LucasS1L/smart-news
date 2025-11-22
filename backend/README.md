@@ -16,7 +16,7 @@ Este documento descreve os endpoints disponíveis na API SmartNews implementada 
 ---
 
 ## POST /news/
-Cria uma nova notícia, salva no banco (SQLite por padrão) e indexa o texto na base vetorial Chroma.
+Cria uma nova notícia e salva na base vetorial Chroma.
 
 Body (JSON):
 ```json
@@ -37,9 +37,7 @@ Resposta (200):
   "text": "Conteúdo da notícia",
   "author": "Autor opcional",
   "source": "Fonte opcional",
-  "date": "2024-10-01",
-  "created_at": "2024-10-01T12:00:05Z",
-  "updated_at": null
+  "date": "2024-10-01"
 }
 ```
 
@@ -104,7 +102,7 @@ curl http://localhost:8000/news/1
 ---
 
 ## DELETE /news/{id}
-Remove a notícia do banco e o registro correspondente na base vetorial.
+Remove o registro correspondente na base vetorial Chroma.
 
 Resposta (200):
 ```json
@@ -164,4 +162,5 @@ docker compose up --build
 Notas:
 - Primeiro start pode baixar o modelo `sentence-transformers`, levando alguns minutos.
 - Redis é usado para cachear resultados de busca (`/search`).
+- Todos os dados persistem no ChromaDB (sem SQLite).
 

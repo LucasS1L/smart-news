@@ -49,3 +49,8 @@ def clear_search_cache() -> int:
         pipe.delete(k)
     pipe.execute()
     return len(keys)
+
+
+def next_news_id() -> int:
+    cli = _get_client()
+    return int(cli.incr("news:id:seq"))

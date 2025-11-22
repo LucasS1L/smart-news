@@ -5,7 +5,7 @@ from chromadb.config import Settings
 from .config import CHROMA_PERSIST_DIR
 
 _client = None
-_collection = None 
+_collection = None
 
 def _get_client() -> Any:
     global _client
@@ -77,3 +77,21 @@ def query_similar(embedding: List[float], top_k: int = 10):
             "metadata": metas[i] or {},
         })
     return items
+
+
+def get_news(id_str: str):
+    col = _get_collection()
+    try:
+        res = col.get(ids=[id_str])
+        ids = res.get("ids", [])
+        if not ids:
+            return None
+        doc = (res.get("documents") or [None])[0]
+        meta = (res.get("metadatas") or [{}])[0]
+        return {
+            "id": ids[0],
+            "text": doc,
+            "metadata": meta or {},
+        }
+    except Exception:
+        return None
