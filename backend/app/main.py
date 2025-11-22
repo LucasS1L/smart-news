@@ -86,6 +86,14 @@ def update_news_item(news_id: int, payload: NewsUpdate, db: Session = Depends(ge
     return NewsRead.model_validate(news)
 
 
+@app.get("/news/{news_id}", response_model=NewsRead)
+def get_news_item(news_id: int, db: Session = Depends(get_db)):
+    news = db.get(News, news_id)
+    if not news:
+        raise HTTPException(status_code=404, detail="News not found")
+    return NewsRead.model_validate(news)
+
+
 @app.delete("/news/{news_id}")
 def delete_news_item(news_id: int, db: Session = Depends(get_db)):
     news = db.get(News, news_id)

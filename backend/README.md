@@ -9,6 +9,7 @@ Este documento descreve os endpoints disponíveis na API SmartNews implementada 
 ## Sumário
 - `POST /news/` — Criar notícia
 - `PUT /news/{id}` — Atualizar notícia
+- `GET /news/{id}` — Obter notícia por ID
 - `DELETE /news/{id}` — Remover notícia
 - `GET /search` — Buscar notícias por similaridade semântica
 
@@ -83,6 +84,21 @@ curl -X PUT http://localhost:8000/news/1 \
   -d '{
     "text": "Texto atualizado"
   }'
+```
+
+---
+
+## GET /news/{id}
+Obtém uma notícia pelo seu identificador numérico.
+
+Resposta (200): mesmo formato do `POST /news/`.
+
+Erros:
+- 404 se o `id` não existir.
+
+Exemplo `curl`:
+```bash
+curl http://localhost:8000/news/1
 ```
 
 ---
