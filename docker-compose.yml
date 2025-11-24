@@ -18,6 +18,22 @@ services:
     depends_on:
       - redis
 
+  smartnews-frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: smartnews-frontend
+    environment:
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:8000}
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - smartnews-api
+
   redis:
     image: redis:7-alpine
     container_name: redis
