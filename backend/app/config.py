@@ -2,7 +2,6 @@ import os
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 
-# Persistência local do Chroma (duckdb+parquet)
 CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", "/data/chroma")
 
 SEARCH_CACHE_TTL = int(os.getenv("SEARCH_CACHE_TTL", "300"))
@@ -14,5 +13,5 @@ def _parse_origins(raw: str) -> list[str]:
 
 CORS_ALLOW_ORIGINS = _parse_origins(os.getenv(
     "CORS_ALLOW_ORIGINS",
-    "http://localhost:5173,http://localhost:3000"
+    "http://localhost:5173,http://smartnews-frontend:5173,http://localhost:3000"
 ))
